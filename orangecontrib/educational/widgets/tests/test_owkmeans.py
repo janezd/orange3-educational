@@ -46,13 +46,13 @@ class TestOWKmeans(GuiTest):
         self.widget.set_data(None)
         self.assertEqual(self.widget.optionsBox.isEnabled(), False)
         self.assertEqual(self.widget.centroidsBox.isEnabled(), False)
-        self.assertEqual(self.widget.commandsBox.isEnabled(), False)
+        self.assertEqual(self.widget.stepBox.isEnabled(), False)
 
         # if data provided
         self.widget.set_data(self.data)
         self.assertEqual(self.widget.optionsBox.isEnabled(), True)
         self.assertEqual(self.widget.centroidsBox.isEnabled(), True)
-        self.assertEqual(self.widget.commandsBox.isEnabled(), True)
+        self.assertEqual(self.widget.stepBox.isEnabled(), True)
 
         # if too les continuous attributes
         domain = Orange.data.Domain(self.data.domain.attributes[:1], self.data.domain.class_var)
@@ -60,14 +60,14 @@ class TestOWKmeans(GuiTest):
         self.widget.set_data(data1)
         self.assertEqual(self.widget.optionsBox.isEnabled(), False)
         self.assertEqual(self.widget.centroidsBox.isEnabled(), False)
-        self.assertEqual(self.widget.commandsBox.isEnabled(), False)
+        self.assertEqual(self.widget.stepBox.isEnabled(), False)
 
         # if too much clusters for data
         self.widget.numberOfClusters = 3
         self.widget.set_data(self.data[:2])
         self.assertEqual(self.widget.optionsBox.isEnabled(), True)
         self.assertEqual(self.widget.centroidsBox.isEnabled(), True)
-        self.assertEqual(self.widget.commandsBox.isEnabled(), False)
+        self.assertEqual(self.widget.stepBox.isEnabled(), False)
 
     def test_no_data(self):
         """
